@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Feliz Cumpleaños Valentina ✨</title>
+    <!-- Google Fonts: Cormorant Garamond, Playfair Display, Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Alex+Brush&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Canvas for celebratory confetti and floating hearts -->
+    <canvas id="confetti-canvas"></canvas>
+    <div id="hearts-container"></div>
+
+
+
+    <!-- Main Container (optimized for mobile & desktop) -->
+    <main class="app-wrapper">
+        
+        <!-- ================= SECTION 1: INICIO ================= -->
+        <section id="hero-section" class="screen-section">
+            <div class="decorative-sparkle sparkle-tl">✨</div>
+            <div class="decorative-sparkle sparkle-tr">🌸</div>
+
+            <div class="hero-content">
+                <span class="greeting-pre">Para ti con amor</span>
+                <h1 class="valentina-title">Valentina</h1>
+                <p class="touch-subtitle">toca el corazón</p>
+
+                <!-- Interactive Heart Button -->
+                <div class="heart-interaction-zone">
+                    <button id="heart-btn" class="heart-pulse-btn" aria-label="Toca el corazón">
+                        <svg class="heart-svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        <div class="heart-ring"></div>
+                        <div class="heart-particles-anchor"></div>
+                    </button>
+
+                    <!-- Progress Bar -->
+                    <div class="progress-box">
+                        <div class="progress-track">
+                            <div id="progress-fill" class="progress-bar-fill"></div>
+                        </div>
+                        <div class="progress-info">
+                            <span id="progress-text" class="progress-msg">Presiona para llenar el amor...</span>
+                            <span id="progress-percentage" class="progress-num">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="unlock-hint" class="unlock-cue hidden">
+                    <span>¡Listo para ti! Desliza hacia abajo 👇</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTAINER DESBLOQUEABLE (OCULTO HASTA EL 100%) ================= -->
+        <div id="unlocked-content" class="unlocked-content-container locked">
+            
+            <!-- ================= SECTION 2: RETRATO & CAROUSEL ================= -->
+            <section id="portrait-section" class="screen-section">
+                <div class="section-header">
+                    <div class="ornament-line"><span>✦</span></div>
+                    <h2 class="favorite-person-title">hoy es el cumpleaños de mi persona favorita</h2>
+                    <p class="date-badge">23 de Octubre</p>
+                </div>
+
+                <!-- Instagram-Style Portrait Carousel -->
+                <div class="portrait-carousel-card">
+                    <div class="carousel-top-bar">
+                        <div class="user-pill">
+                            <span class="user-avatar">🎂</span>
+                            <span class="user-name">Para Valentina</span>
+                        </div>
+                        <span id="carousel-counter" class="carousel-counter">1 / 3</span>
+                    </div>
+
+                    <!-- Carousel Viewport (Strictly slides images, not the page) -->
+                    <div class="carousel-viewport-wrapper">
+                        <button id="prev-slide" class="carousel-nav-btn prev-btn" aria-label="Foto anterior">‹</button>
+                        
+                        <div id="carousel-track" class="carousel-track">
+                            <!-- Slide 1 -->
+                            <div class="carousel-slide" data-index="1">
+                                <div class="slide-image-wrapper">
+                                    <img src="images/foto1.jpg" alt="Foto Valentina 1" class="slide-img" loading="lazy">
+                                    <div class="slide-gradient-overlay"></div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div class="carousel-slide" data-index="2">
+                                <div class="slide-image-wrapper">
+                                    <img src="images/foto2.jpg" alt="Foto Valentina 2" class="slide-img" loading="lazy">
+                                    <div class="slide-gradient-overlay"></div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="carousel-slide" data-index="3">
+                                <div class="slide-image-wrapper">
+                                    <img src="images/foto3.jpg" alt="Foto Valentina 3" class="slide-img" loading="lazy">
+                                    <div class="slide-gradient-overlay"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="next-slide" class="carousel-nav-btn next-btn" aria-label="Siguiente foto">›</button>
+                    </div>
+
+                    <!-- Carousel Pagination Dots -->
+                    <div class="carousel-dots-container">
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                    </div>
+
+                    <div class="carousel-caption">
+                        <p class="carousel-tip">⇄ Desliza suavemente a los lados</p>
+                    </div>
+                </div>
+
+                <!-- Scroll indicator down to letter -->
+                <div class="scroll-cue">
+                    <span>Continúa hacia tu sorpresa</span>
+                    <span class="cue-arrow">↓</span>
+                </div>
+            </section>
+
+            <!-- ================= SECTION 3: CARTA INTERACTIVA ================= -->
+            <section id="letter-section" class="screen-section">
+                <div class="letter-intro">
+                    <h3 class="letter-heading">Hay algo dentro para ti</h3>
+                    <p class="letter-sub">Toca la carta para abrirla</p>
+                </div>
+
+                <!-- Envelope Component -->
+                <div class="envelope-wrapper">
+                    <div id="envelope" class="envelope-card">
+                        <!-- Closed Envelope Design (Solid single color) -->
+                        <div class="envelope-body">
+                            <div class="envelope-flap"></div>
+                            <div class="envelope-pocket"></div>
+
+                            <!-- Wax Seal in Center -->
+                            <div id="wax-seal" class="wax-seal-btn" role="button" tabindex="0">
+                                <div class="seal-inner">
+                                    <span class="seal-icon">💌</span>
+                                    <span class="seal-text">descúbrelo</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Letter Paper (Completely hidden when closed, unfolds when open) -->
+                        <div id="letter-paper" class="letter-paper">
+                            <div class="paper-header">
+                                <span class="letter-date">23 de Octubre</span>
+                                <span class="letter-to">Mi niña Valentina,</span>
+                            </div>
+
+                            <!-- Main letter body -->
+                            <div class="paper-body">
+                                <p id="letter-content" class="letter-text">
+                                    Hoy celebro tu vida, tu sonrisa y cada momento que hace que el mundo sea un lugar más bonito para mi. Eres una persona increíble, llena de luz, ternura y alegría.
+                                    <br><br>
+                                    Deseo de todo corazon que este nuevo año de vida venga lleno de sueños cumplidos, risas eternas y momentos inolvidables. Gracias por ser esa persona tan especial para mi y por llenar todo de amor.
+                                    <br><br>
+                                    ¡Feliz cumpleaños mi amor, hoy y siempre te amare! ✨
+                                </p>
+                            </div>
+
+                            <!-- Extra image below letter -->
+                            <div class="letter-photo-container">
+                                <img src="images/foto_carta.jpg" alt="Recuerdo especial" class="letter-photo">
+                                <div class="photo-tape"></div>
+                            </div>
+
+                            <!-- Dynamic Toasting Wine Glasses Animation -->
+                            <div class="cheers-container">
+                                <div class="wine-glasses-wrapper">
+                                    <div class="wine-glass glass-left">
+                                        <span class="glass-emoji">🥂</span>
+                                    </div>
+                                    <div class="toast-sparkles">
+                                        <span class="sparkle s1">✨</span>
+                                        <span class="sparkle s2">✦</span>
+                                        <span class="sparkle s3">✨</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Closing phrase -->
+                            <p class="love-thank-you">Gracias por tanto amor.</p>
+                            <p class="signature-rommel">Con todo mi cariño ❤️</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer note -->
+                <footer class="page-footer">
+                    <p>Hecho con mucho amor para ti 🌸</p>
+                </footer>
+            </section>
+
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,914 @@
+/* ===================================================
+   VARIABLES & PALETA DE COLORES CÁLIDOS Y DESATURADOS
+   =================================================== */
+:root {
+    --bg-warm: #FAF6F0;
+    --bg-secondary: #F5EDE4;
+    --card-bg: #FFFDF9;
+    --card-border: rgba(224, 195, 185, 0.45);
+    
+    /* Tonos desaturados y cálidos */
+    --rose-dusty: #C48B90;
+    --rose-soft: #D9A5A9;
+    --rose-light: #F2D6D8;
+    --blush-accent: #B87278;
+    
+    --warm-cream: #FFF9F5;
+    --warm-sand: #EFE4D8;
+    --gold-accent: #C8A265;
+    
+    --text-primary: #3E3032;
+    --text-secondary: #745F61;
+    --text-muted: #A38C8E;
+    
+    --shadow-soft: 0 12px 32px rgba(138, 98, 90, 0.09);
+    --shadow-hover: 0 18px 40px rgba(138, 98, 90, 0.16);
+    --radius-lg: 28px;
+    --radius-md: 18px;
+    --radius-sm: 10px;
+
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    --font-script: 'Alex Brush', cursive;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* ================= RESET & BASICS ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    background: radial-gradient(circle at 50% 15%, #FFFDF9 0%, var(--bg-warm) 50%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    line-height: 1.5;
+}
+
+/* Confetti canvas */
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* Floating heart particles layer */
+#hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+    overflow: hidden;
+}
+
+/* App Wrapper (Mobile & PC centered view) */
+
+/* App Wrapper (Mobile & PC centered view) */
+.app-wrapper {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding: 24px 20px 60px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    position: relative;
+}
+
+/* Screen Sections */
+.screen-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* ================= SECTION 1: HERO ================= */
+#hero-section {
+    min-height: 85vh;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.decorative-sparkle {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.7;
+    animation: floatSparkle 3.5s ease-in-out infinite alternate;
+}
+
+.sparkle-tl { top: 8%; left: 8%; }
+.sparkle-tr { top: 12%; right: 8%; animation-delay: 1.5s; }
+
+@keyframes floatSparkle {
+    0% { transform: translateY(0px) rotate(0deg); opacity: 0.5; }
+    100% { transform: translateY(-10px) rotate(15deg); opacity: 0.9; }
+}
+
+.hero-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.greeting-pre {
+    font-family: var(--font-script);
+    font-size: 1.8rem;
+    color: var(--rose-dusty);
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.valentina-title {
+    font-family: var(--font-heading);
+    font-size: 3.4rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    text-shadow: 0 4px 20px rgba(196, 139, 144, 0.2);
+}
+
+.touch-subtitle {
+    font-size: 0.95rem;
+    text-transform: lowercase;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-bottom: 36px;
+    animation: softPulse 2.2s infinite ease-in-out;
+}
+
+@keyframes softPulse {
+    0%, 100% { opacity: 0.65; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.03); }
+}
+
+/* Heart Button interaction */
+.heart-interaction-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 30px;
+}
+
+.heart-pulse-btn {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FFFDF9 0%, #F8EBEA 100%);
+    border: 2px solid var(--rose-light);
+    box-shadow: 0 12px 30px rgba(196, 139, 144, 0.25), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    outline: none;
+}
+
+.heart-pulse-btn:active {
+    transform: scale(0.9);
+}
+
+.heart-pulse-btn * {
+    pointer-events: none;
+}
+
+.heart-svg {
+    width: 48px;
+    height: 48px;
+    color: var(--rose-dusty);
+    transition: transform 0.2s ease, color 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(196, 139, 144, 0.3));
+}
+
+.heart-pulse-btn:hover .heart-svg {
+    color: var(--blush-accent);
+    transform: scale(1.1);
+}
+
+/* Pulsing aura ring */
+.heart-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--rose-soft);
+    opacity: 0;
+    pointer-events: none;
+    animation: ringPulse 2.4s infinite;
+}
+
+@keyframes ringPulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Progress bar container */
+.progress-box {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 14px;
+    background: #EFE4DE;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 2px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--rose-soft) 0%, var(--blush-accent) 100%);
+    border-radius: 20px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(184, 114, 120, 0.4);
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.progress-msg {
+    font-weight: 400;
+}
+
+.progress-num {
+    font-weight: 600;
+    color: var(--blush-accent);
+}
+
+.unlock-cue {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--blush-accent);
+    background: #FFF2F2;
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: 1px solid var(--rose-light);
+    animation: bounceDown 1.8s infinite ease-in-out;
+    transition: opacity 0.5s ease;
+}
+
+.unlock-cue.hidden {
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+}
+
+@keyframes bounceDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}
+
+/* ================= SECTION 2: PORTRAIT & CAROUSEL ================= */
+#portrait-section {
+    padding-top: 20px;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+#portrait-section.locked {
+    opacity: 0.45;
+    filter: blur(1px);
+    pointer-events: none;
+    user-select: none;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 22px;
+    padding: 0 10px;
+}
+
+.ornament-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--rose-dusty);
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+}
+
+.favorite-person-title {
+    font-family: var(--font-heading);
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-bottom: 6px;
+    text-transform: lowercase;
+}
+
+.favorite-person-title::first-letter {
+    text-transform: uppercase;
+}
+
+.date-badge {
+    display: inline-block;
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--rose-dusty);
+    letter-spacing: 1px;
+}
+
+/* Card of Instagram-style Carousel */
+.portrait-carousel-card {
+    width: 100%;
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    padding-bottom: 16px;
+}
+
+.carousel-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    border-bottom: 1px solid rgba(224, 195, 185, 0.2);
+}
+
+.user-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--warm-sand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+}
+
+.user-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.carousel-counter {
+    font-size: 0.78rem;
+    background: rgba(62, 48, 50, 0.08);
+    color: var(--text-secondary);
+    padding: 3px 9px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+/* Viewport with STRICT horizontal scroll only */
+.carousel-viewport-wrapper {
+    position: relative;
+    width: 100%;
+    background: #F8EFE7;
+}
+
+.carousel-track {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x; /* Ensures ONLY horizontal swipe occurs, no page scroll jitter */
+    scrollbar-width: none; /* Firefox */
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4; /* Elegant Instagram portrait format */
+    overflow: hidden;
+    background: #EFE4DC;
+}
+
+.slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.slide-gradient-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25%;
+    background: linear-gradient(to top, rgba(62, 48, 50, 0.15), transparent);
+    pointer-events: none;
+}
+
+/* Navigation buttons (for desktop or tap) */
+.carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 253, 249, 0.88);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(224, 195, 185, 0.6);
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.carousel-nav-btn:hover {
+    background: #FFFDF9;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn { left: 12px; }
+.next-btn { right: 12px; }
+
+/* Dots indicator */
+.carousel-dots-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin-top: 14px;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #D9C8BE;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    width: 22px;
+    border-radius: 10px;
+    background: var(--blush-accent);
+}
+
+.carousel-caption {
+    text-align: center;
+    margin-top: 8px;
+}
+
+.carousel-tip {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+}
+
+.scroll-cue {
+    margin-top: 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.cue-arrow {
+    font-size: 1.1rem;
+    color: var(--rose-dusty);
+    animation: bounceDown 1.5s infinite;
+}
+
+/* ================= UNLOCKED CONTAINER (OCULTO AL INICIO) ================= */
+.unlocked-content-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    animation: fadeInSurprise 0.85s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+}
+
+.unlocked-content-container.locked {
+    display: none !important;
+}
+
+@keyframes fadeInSurprise {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================= SECTION 3: CARTA INTERACTIVA ================= */
+#letter-section {
+    padding-top: 10px;
+    width: 100%;
+}
+
+.letter-intro {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.letter-heading {
+    font-family: var(--font-heading);
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.letter-sub {
+    font-size: 0.88rem;
+    color: var(--rose-dusty);
+}
+
+/* Envelope Container */
+.envelope-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.envelope-card {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    border-radius: var(--radius-md);
+    transition: all 0.5s ease;
+}
+
+/* ================= SOBRE CERRADO (UN SOLO COLOR SÓLIDO) ================= */
+.envelope-body {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    background: #E8D6D0; /* Un solo color cálido y sólido */
+    border-radius: var(--radius-md);
+    box-shadow: 0 14px 34px rgba(138, 98, 90, 0.16);
+    border: 1px solid #DBC4BD;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.envelope-body:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px rgba(138, 98, 90, 0.22);
+}
+
+/* Solapa superior del sobre */
+.envelope-flap {
+    width: 100%;
+    height: 110px;
+    background: #E2CBC4;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    box-shadow: 0 4px 10px rgba(100, 60, 60, 0.08);
+}
+
+/* Bolsillo inferior del sobre */
+.envelope-pocket {
+    width: 100%;
+    height: 100%;
+    background: #E8D6D0;
+    clip-path: polygon(0 100%, 100% 100%, 100% 40%, 50% 75%, 0 40%);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Sello de cera en todo el centro */
+.wax-seal-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #D4888E 0%, #A6575E 70%, #823C42 100%);
+    box-shadow: 0 8px 22px rgba(130, 60, 66, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    outline: none;
+}
+
+.wax-seal-btn:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+.seal-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+}
+
+.seal-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.seal-text {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #FFF5F5;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-top: 3px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Cuando se abre la carta: ocultar el sobre cerrado */
+.envelope-card.open .envelope-body {
+    display: none;
+}
+
+/* ================= CARTA DESPLEGADA (SE REVELA SOLO AL ABRIR) ================= */
+.letter-paper {
+    display: none; /* Totalmente oculta hasta presionar la carta */
+    background: #FFFDF9;
+    border-radius: var(--radius-md);
+    padding: 34px 24px;
+    border: 1px solid #ECE0D6;
+    box-shadow: 0 18px 45px rgba(120, 80, 70, 0.14);
+    position: relative;
+    z-index: 10;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.envelope-card.open .letter-paper {
+    display: flex;
+    animation: unfoldLetterAnim 0.75s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+}
+
+@keyframes unfoldLetterAnim {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.paper-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-bottom: 1px dashed #E5D5C8;
+    padding-bottom: 12px;
+}
+
+.letter-date {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--rose-dusty);
+    font-family: var(--font-serif);
+}
+
+.letter-to {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.paper-body {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    text-align: justify;
+}
+
+/* Image inside letter */
+.letter-photo-container {
+    width: 100%;
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #F4EAE2;
+    border: 6px solid #FFFDF9;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.letter-photo {
+    width: 100%;
+    height: auto;
+    max-height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-tape {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 20px;
+    background: rgba(235, 220, 205, 0.7);
+    border: 1px solid rgba(210, 190, 175, 0.4);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Dynamic Animated Toasting Wine Glasses (🥂) */
+.cheers-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 0 6px 0;
+}
+
+.wine-glasses-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wine-glass {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: clinkToast 2s infinite ease-in-out;
+}
+
+.glass-emoji {
+    font-size: 3.2rem;
+    display: inline-block;
+    filter: drop-shadow(0 4px 10px rgba(200, 162, 101, 0.3));
+}
+
+@keyframes clinkToast {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+    }
+    35% {
+        transform: scale(1.15) rotate(-6deg);
+    }
+    50% {
+        transform: scale(1.22) rotate(6deg);
+    }
+    65% {
+        transform: scale(1.1) rotate(0deg);
+    }
+}
+
+.toast-sparkles {
+    position: absolute;
+    top: -12px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    pointer-events: none;
+}
+
+.toast-sparkles .sparkle {
+    font-size: 1.1rem;
+    color: var(--gold-accent);
+    opacity: 0;
+    animation: sparkleBurst 2s infinite ease-in-out;
+}
+
+.toast-sparkles .s1 { animation-delay: 0.8s; }
+.toast-sparkles .s2 { animation-delay: 1.0s; font-size: 1.4rem; }
+.toast-sparkles .s3 { animation-delay: 1.2s; }
+
+@keyframes sparkleBurst {
+    0% { transform: scale(0.4) translateY(0); opacity: 0; }
+    50% { transform: scale(1.3) translateY(-14px); opacity: 1; }
+    100% { transform: scale(0.6) translateY(-24px); opacity: 0; }
+}
+
+/* Romantic closing phrase */
+.love-thank-you {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--blush-accent);
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+}
+
+.signature-rommel {
+    text-align: center;
+    font-family: var(--font-script);
+    font-size: 1.6rem;
+    color: var(--rose-dusty);
+    margin-top: -8px;
+}
+
+/* Page Footer */
+.page-footer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding-top: 24px;
+}
+
+/* ================= RESPONSIVE ADJUSTMENTS ================= */
+@media (min-width: 768px) {
+    .app-wrapper {
+        max-width: 520px;
+        padding: 40px 24px 80px 24px;
+    }
+    
+    .valentina-title {
+        font-size: 4rem;
+    }
+
+    .heart-pulse-btn {
+        width: 108px;
+        height: 108px;
+    }
+
+    .heart-svg {
+        width: 54px;
+        height: 54px;
+    }
+}
